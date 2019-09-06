@@ -1,0 +1,23 @@
+# This pulls the latest price and volume data of all the dse tickers from dse website and exports the data as csv file in your
+# working diretory. This code is written in R using the underrated library, rvest.
+
+#Import rvest library first
+library(rvest)
+
+#Read DSE url and data
+dse_url <- xml2::read_html("https://www.dsebd.org/latest_share_price_all_by_ltp.php")
+dse_data <- dse_url %>%
+  html_nodes(xpath = "//table") %>%
+  html_table()
+ 
+#Just for demonstration purpose, how the extracted data looks
+dse_data
+
+#Add date and time 
+dse <- "DSE data on"
+time <- Sys.time()
+timedata <- paste(dse,time)
+final_data <- c(timedata,dse_data)
+
+#Save table as csv in the working directory
+write.table(final_data,"dse_data.csv",sep=",")
