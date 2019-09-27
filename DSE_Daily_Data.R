@@ -1,4 +1,3 @@
-
 # This pulls the latest price and volume data of all the dse tickers from dse website and exports the data as csv file in your
 # working diretory. This code is written in R using the underrated library, rvest.
 
@@ -22,3 +21,5 @@ final_data <- c(timedata,dse_data)
 
 #Save table as csv in the working directory
 write.table(final_data,"dse_data.csv",sep=",")
+
+#The End
